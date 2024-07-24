@@ -540,6 +540,7 @@ def rope_config_validation(config: PretrainedConfig):
         raise ValueError(
             f"rope_scaling must contain a non-None 'rope_type' field. Possible options are {possible_rope_types}"
         )
+    rope_scaling["rope_type"] = rope_type  # BC: ensure the field is named "rope_type" for consistency
 
     validation_fn = ROPE_VALIDATION_FUNCTIONS.get(rope_type)
     if validation_fn is not None:
